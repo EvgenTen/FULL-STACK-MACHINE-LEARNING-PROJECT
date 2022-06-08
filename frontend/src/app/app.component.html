@@ -1,0 +1,168 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    
+    <div class="dropdown">
+     <select (change)="selectChangeHandlerMaker($event)">
+       
+        <option [value]="null" [disabled]="true" >Make</option>
+      <ng-container *ngFor="let car of uniqueMaker">
+       <option  value = {{car}}>
+        {{car}}
+       </option>
+      </ng-container>
+     </select>
+    </div>
+    <div class="dropdown">
+        <select (change)="selectChangeHandlerModel($event)">
+           <option [value]="null" [disabled]="true" >Model</option>
+         <ng-container *ngFor="let car of uniqueModel">
+          <option   value =  {{car}} >
+           {{car}}
+          </option>
+         </ng-container>
+        </select>
+       </div>
+       <div class="dropdown">
+        <select (change)="selectChangeHandlerHand($event)">
+          
+           <option [value]="null" [disabled]="true" >Hand</option>
+         <ng-container *ngFor="let car of uniqueHand">
+          <option   value =  {{car}} >
+           {{car}}
+          </option>
+         </ng-container>
+        </select>
+       </div>
+       <div class="dropdown">
+        <select (change)="selectChangeHandlerYear($event)">
+          
+           <option [value]="null" [disabled]="true" >Year</option>
+         <ng-container *ngFor="let car of uniqueYear">
+          <option   value =  {{car}} >
+           {{car}}
+          </option>
+         </ng-container>
+        </select>
+       </div>
+       <div class="dropdown">
+        <select (change)="selectChangeHandlerMonth($event)">
+          
+           <option [value]="null" [disabled]="true" >Month</option>
+         <ng-container *ngFor="let car of uniqueMonth">
+          <option   value =  {{car}} >
+           {{car}}
+          </option>
+         </ng-container>
+        </select>
+       </div>
+       <nav class="navbar navbar-custom">
+     <form id="search" #addForm="ngForm" (click) ="onAddKm(addForm)">
+            <input type="text" ngModel name="distance" placeholder="Distance">
+            <a class="navbar-brand" style="color:rgb(107, 103, 103);"></a>
+            <button >Search</button>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+    </form>
+    </nav>
+    <div class="collapse navbar-collapse" id="navbarColor02">
+      <ul class="navbar-nav mr-auto">
+         <li class="nav-item active">
+            <a class="nav-link" (click)="onOpenModal(null, 'add')">Add Car <span class="sr-only">(current)</span></a>
+         </li>
+      </ul>
+    </div>  
+<!-- Add Employee Modal-->
+<div class="modal fade" id="addCarModal" tabindex="-1" aria-labelledby="addCarModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addCarModal">Add car</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #addForm="ngForm" (ngSubmit)="onAddCar(addForm)">
+          <div class="form-group">
+             <label for="name">Name</label>
+             <input type="text" ngModel name="name" class="form-control" id="name" placeholder="Name" required>
+          </div>
+          <div class="form-group">
+             <label for="email">Email Address</label>
+             <input type="email" ngModel name="email" class="form-control" id="email" placeholder="Email" required>
+          </div>
+          <div class="form-group">
+             <label for="phone">Job title</label>
+             <input type="text" ngModel name="jobTitle" class="form-control" id="jobTile" placeholder="Job title" required>
+          </div>
+          <div class="form-group">
+             <label for="phone">Phone</label>
+             <input type="text" ngModel name="phone" class="form-control" id="phone" placeholder="Phone" required>
+          </div>
+          <div class="form-group">
+             <label for="phone">Image URL</label>
+             <input type="text" ngModel name="imageUrl" class="form-control" id="imageUrl" placeholder="Image URL" required>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id= "add-car-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+</div>
+  <!-- <nav class="car-query-search">
+    <div class="car-query">
+     <form #search="ngForm" (ngSubmit)="onSearch(search)">
+       </form>
+ </div></nav> -->
+
+
+     <div class="navbar navbar-expand-lg navbar-dark bg-dark"></div>
+     <ul class="navbar-nav mr-auto">
+      
+   </ul>
+     <form class="form-inline my-2 my-lg-0">
+        <input type="search"   ngModel
+         name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search cars..." required>
+     </form>
+  </div>
+</nav>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="container" id="main-container">
+    <div class="row">
+        <div *ngFor="let car of cars" class="col-md-6 col-xl-3">
+            <div class="card m-b-30">
+                <div class="card-body row">
+                    <div class="col-6">
+                        
+                      <a href=""><img src="{{car?.imageUrl}}" alt="" class="img-fluid rounded-circle w-100"></a>
+                    </div>
+                    <div class="col-6 card-title align-self-center mb-0">
+                      <h5>{{car?.manufacturer}} {{car?.model}}</h5>
+                    </div>
+                    <div class="col-6 card-title align-self-center mb-0">
+                        <li class="list-group-item float-left">Year:{{car?.year}} Month:{{car?.month}}</li>
+                        <li class="list-group-item float-left">Distance:{{car?.distance}}</li>
+                        <li class="list-group-item float-left">Hand:{{car?.hand}}</li>
+                      
+                    </div>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Price : <a href="#">{{car?.price}} <i class='fa fa-shekel'></i></a></li>
+                    <li class="list-group-item">Date : {{car?.date}}</li>
+                </ul>
+                <div class="card-body">
+                    <div class="float-right btn-group btn-group-sm">
+                        <a href="#" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Info"><i class="fa fa-info-circle" aria-hidden="true"></i> </a>
+                        
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+</div>

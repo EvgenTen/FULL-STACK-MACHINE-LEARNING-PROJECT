@@ -1,1 +1,1 @@
-![alt text](http://url/to/1 (1).GIF)
+![alt text](http://url/to/1 (1).gif)

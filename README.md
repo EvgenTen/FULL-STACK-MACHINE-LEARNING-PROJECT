@@ -1,1 +1,1 @@
-![alt text](1 (1).gif)
+![alt text](/1 (1).gif)

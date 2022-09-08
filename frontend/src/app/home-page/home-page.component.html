@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg navbar-dark"  style="background-image: url('https://lp-auto-assets.s3.us-east-1.amazonaws.com/21/alfa-romeo/tonale/footer.jpg');" >
+ 
+  
+    
+       <ul class="navbar-nav mr-auto">
+        
+     </ul>
+       <form class="form-inline my-2 my-lg-0">
+          <input type="search"    (change)="searchCars(key.value)" #key="ngModel" ngModel
+           name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search cars..." required>
+         </form>
+    
+  </nav>
+  <a class="navbar-brand" style="color:rgb(44, 42, 42);"></a>  
+  <div class="container" id="main-container">
+    <div class="row">
+        <div *ngFor="let car of cars" class="col-md-6 col-xl-3">
+            <div class="card m-b-30">
+                <div class="card-body row">
+                    <div class="col-6">
+                        
+                      <a href=""><img src="{{car?.imageUrl}}" alt="" class="img-fluid rounded-circle w-100"></a>
+                    </div>
+                    <div class="col-6 card-title align-self-center mb-0">
+                      <h5>{{car?.manufacturer}} {{car?.model}}</h5>
+                    </div>
+                    <div class="col-6 card-title align-self-center mb-0">
+                        <li class="list-group-item float-left">Year:{{car?.year}} Month:{{car?.month}}</li>
+                        <li class="list-group-item float-left">Distance:{{car?.distance}}</li>
+                        <li class="list-group-item float-left">Hand:{{car?.hand}}</li>
+                      
+                    </div>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Price : <a href="#">{{car?.price}} <i class='fa fa-shekel'></i></a></li>
+                    <li class="list-group-item">Date : {{car?.date}}</li>
+                </ul>
+                
+                
+            </div>
+        </div>
+    
+       
+  </div>
+
